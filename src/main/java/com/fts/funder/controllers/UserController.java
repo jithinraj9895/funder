@@ -16,11 +16,6 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/demo")
-    public ResponseEntity<String> demo() {
-        return ResponseEntity.ok("Hello from secured url");
-    }
-
     @GetMapping("/users")
     public ResponseEntity<List<User>> getUsers(){
         return ResponseEntity.ok(userRepository.findAll());

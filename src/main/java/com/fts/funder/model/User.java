@@ -59,7 +59,7 @@ public class User implements UserDetails {
     }
 
     public void setLastName(String lastName) {
-        lastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getUserName() {
