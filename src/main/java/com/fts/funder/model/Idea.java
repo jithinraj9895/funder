@@ -25,7 +25,10 @@ public class Idea {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate = new Date();
 
+    @Column
     private int approvals;
+
+    @Column
     private int disapprovals;
 
     // Getters and Setters (Can use Lombok)
