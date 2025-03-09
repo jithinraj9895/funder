@@ -13,5 +13,4 @@ public interface IdeaRepository extends JpaRepository<Idea,Integer> {
 
     @Override
     Optional<Idea> findById(Integer integer);
-
 }

@@ -16,11 +16,9 @@ import java.util.List;
 @RestController
 public class AuthController {
 
-    private final UserRepository userRepository;
     private final AuthenticationService authenticationService;
 
-    public AuthController(UserRepository userRepository, AuthenticationService authenticationService) {
-        this.userRepository = userRepository;
+    public AuthController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
 
