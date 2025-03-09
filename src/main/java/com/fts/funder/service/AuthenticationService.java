@@ -1,6 +1,7 @@
 package com.fts.funder.service;
 
 import com.fts.funder.model.AuthenticationResponse;
+import com.fts.funder.model.Dto.LoginDto;
 import com.fts.funder.model.User;
 import com.fts.funder.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,7 +29,6 @@ public class AuthenticationService {
         user.setUsername(request.getUsername());
         user.setLastName(request.getLastName());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        System.out.println(request.getPassword());
         user.setRole(request.getRole());
         String token = jwtService.generateToken(user);
 
@@ -36,7 +36,7 @@ public class AuthenticationService {
         return new AuthenticationResponse(token);
     }
 
-    public AuthenticationResponse authenticate(User request){
+    public AuthenticationResponse authenticate(LoginDto request){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(),request.getPassword()));
         User user = userRepository.findByUsername(request.getUsername()).orElseThrow();
         String token = jwtService.generateToken(user);

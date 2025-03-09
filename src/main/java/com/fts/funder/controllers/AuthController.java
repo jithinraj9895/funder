@@ -1,6 +1,7 @@
 package com.fts.funder.controllers;
 
 import com.fts.funder.model.AuthenticationResponse;
+import com.fts.funder.model.Dto.LoginDto;
 import com.fts.funder.model.User;
 import com.fts.funder.repository.UserRepository;
 import com.fts.funder.service.AuthenticationService;
@@ -29,7 +30,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody User user){
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginDto user){
         return ResponseEntity.ok(authenticationService.authenticate(user));
     }
 
