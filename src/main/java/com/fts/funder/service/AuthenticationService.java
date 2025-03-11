@@ -24,9 +24,12 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse register(User request){
+        if(userRepository.findByUsername(request.getUsername()).isPresent()){
+            return new AuthenticationResponse("user exists");
+        }
+
         User user = new User();
         user.setFirstName(request.getFirstName());
-        user.setUsername(request.getUsername());
         user.setLastName(request.getLastName());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(request.getRole());
