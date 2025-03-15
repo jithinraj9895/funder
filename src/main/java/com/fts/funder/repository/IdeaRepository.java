@@ -8,9 +8,4 @@ import java.util.Optional;
 
 public interface IdeaRepository extends JpaRepository<Idea,Integer> {
 
-    @Override
-    List<Idea> findAll();
-
-    @Override
-    Optional<Idea> findById(Integer integer);
 }
