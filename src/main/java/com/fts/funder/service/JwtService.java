@@ -5,6 +5,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +20,14 @@ public class JwtService {
 
     private final String SECRET_KEY = "IYA5eff8C+C4qOj+/WoWJ3d8yA5VKZe5mqZjonyL3jw=";
 
+
     public String extractUsername(String token){
         return extractClaim(token,Claims::getSubject);
     }
 
+    public Long extractUserId(String token) {
+        return extractClaim(token, claims -> claims.get("user_id", Long.class));
+    }
     public boolean isValid(String token, UserDetails user){
         String username = extractUsername(token);
         return (username.equals(user.getUsername())) && !isTokenExpired(token);
@@ -48,6 +53,7 @@ public class JwtService {
 
     public String generateToken(User user){
         return Jwts.builder().subject(user.getUsername())
+                .claim("user_id",user.getId())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + 24*60*60*1000))
                 .signWith(getSignInKey())
