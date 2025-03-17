@@ -32,12 +32,4 @@ public class Vote {
     private Idea idea;
 
 
-    public Vote(VoteType voteType, User user, Idea idea) {
-        this.voteType = voteType;
-        this.user = user;
-        this.idea = idea;
-    }
-
-
-
 }

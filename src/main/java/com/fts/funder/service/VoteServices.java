@@ -36,11 +36,20 @@ public class VoteServices {
         Optional<Vote> existingVote = voteRepository.findByUserAndIdea(user, idea);
 
         if (existingVote.isPresent()) {
-            throw new RuntimeException("User has already voted on this idea.");
+            if(vote.getVoteType() == Vote.VoteType.AGREE){
+                idea.setApprovals(idea.getApprovals()-1);
+            }else{
+                idea.setDisapprovals(idea.getDisapprovals()-1);
+            }
+            voteRepository.delete(existingVote.get());
+            return "vote removed";
         }
 
         // 1️⃣ Save the vote
-        Vote vote1 = new Vote(vote.getVoteType(), user, idea);
+        Vote vote1 = new Vote();
+        vote1.setVoteType(vote.getVoteType());
+        vote1.setUser(user);
+        vote1.setIdea(idea);
         voteRepository.save(vote1);  // ✅ This is important
 
         if (vote.getVoteType() == Vote.VoteType.AGREE) {

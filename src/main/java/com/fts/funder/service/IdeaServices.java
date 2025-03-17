@@ -31,6 +31,6 @@ public class IdeaServices {
     }
 
     public List<Idea> getAllIdeas(){
-        return ideaRepository.findAll();
+        return ideaRepository.findAllByOrderByIdAsc();
     }
 }
