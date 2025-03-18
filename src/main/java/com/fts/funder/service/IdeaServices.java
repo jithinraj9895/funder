@@ -4,6 +4,7 @@ import com.fts.funder.model.Idea;
 import com.fts.funder.model.User;
 import com.fts.funder.repository.IdeaRepository;
 import com.fts.funder.repository.UserRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,5 +33,9 @@ public class IdeaServices {
 
     public List<Idea> getAllIdeas(){
         return ideaRepository.findAllByOrderByIdAsc();
+    }
+
+    public List<Object[]> getTop10Ideas(){
+        return ideaRepository.findTopIdeasByRanking(PageRequest.of(0,10));
     }
 }

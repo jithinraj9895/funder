@@ -23,6 +23,11 @@ public class IdeaController {
         return ResponseEntity.ok(ideaServices.getAllIdeas());
     }
 
+    @GetMapping("/ideas/best")
+    public ResponseEntity<List<Object[]>> getTop10(){
+        return ResponseEntity.ok(ideaServices.getTop10Ideas());
+    }
+
     @PostMapping("/idea/{user_id}")
     public ResponseEntity<Idea> setIdea(@PathVariable int user_id, @RequestBody Idea request){
         Idea idea = ideaServices.AddIdea(user_id,request);
