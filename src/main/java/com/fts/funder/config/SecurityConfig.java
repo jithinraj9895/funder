@@ -45,7 +45,7 @@ public class SecurityConfig {
         })).
                 csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        req->req.requestMatchers("/login/**","/register/**","/h2-console/**").permitAll()
+                        req->req.requestMatchers("/login/**","/register/**","/best/**","/h2-console/**").permitAll()
                                 .anyRequest().authenticated()
                 ).userDetailsService(userDetailsServiceImp).sessionManagement(
                         session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)

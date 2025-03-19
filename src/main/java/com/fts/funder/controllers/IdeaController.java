@@ -23,7 +23,7 @@ public class IdeaController {
         return ResponseEntity.ok(ideaServices.getAllIdeas());
     }
 
-    @GetMapping("/ideas/best")
+    @GetMapping("/best")
     public ResponseEntity<List<Object[]>> getTop10(){
         return ResponseEntity.ok(ideaServices.getTop10Ideas());
     }

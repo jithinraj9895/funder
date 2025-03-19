@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface IdeaRepository extends JpaRepository<Idea,Integer> {
     List<Idea> findAllByOrderByIdAsc();
 
-    @Query("SELECT i, (i.approvals - i.disapprovals) AS ranking FROM Idea i ORDER BY ranking DESC")
+    @Query("SELECT i.id,i.title,i.description, (i.approvals - i.disapprovals) AS ranking FROM Idea i ORDER BY ranking DESC")
     List<Object[]> findTopIdeasByRanking(Pageable pageable);
 }
